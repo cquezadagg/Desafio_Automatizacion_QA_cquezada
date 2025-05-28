@@ -1,0 +1,5 @@
+locators\MainLocators.class
+utils\ExtentReportManager.class
+utils\ScreenshotUtil.class
+steps\MainSteps.class
+runner\TestRunner.class

@@ -1,53 +1,63 @@
-# Desaf&iacute;o Automatizaci&oacute;n QA
-* Realice el siguiente flujo utilizando Selenium con el lenguaje de programaci&oacute;n que prefiera.
-  
-- Ingresar a http://opencart.abstracta.us/index.php?route=common/home
-- Añadir al carro de compras un Ipod Classic
-- Añadir al carro de compras un iMac
-- Proceder a realizar la compra
-- Realizar login con credenciales obtenidas de un archivo externo a elección (basta que sea un email con estructura válida y contraseña)
-- Crear una cuenta
-- Continuar con la compra y llegar a la orden completa
-- Visitar el historial de ordenes y validar resumen de orden 
-- Cerrar sesión
+# Desafio automatizacion QA resuelto - Carlos Quezada
 
-# Validaciones m&iacute;nimas 
+## Descripción
+En este proyecto se pueden ver resueltos todo lo solicitado. Ademas para poder ejecutarlo hay que tener un par de consideraciones que se explicaran a continuación.
 
-- Tomar evidencia de cada producto añadido al carro
-- Validar que los articulos en el carro sean Ipod Classic y iMac
-- Evidencia de creación de la cuenta
-- Evidencia de paso a paso de checkout
-- Validar que despacho y costo sea = Flat Shipping Rate - $5.00
-- Evidencia de costo final de la orden
-- Evidencia de orden completa
-- Evidencia de apartado "Order History" y validar el estado de la compra se encuentre en estado "Pending"
-- Validar datos de dirección de pago v/s los ingresados al crear la cuenta
- 
+## Consideraciónes
+Para que este proyecto se pueda ejecutar sin problemas necesitamos tener los siguientes puntos en consideraciones:
+    - Tener instalado Java y Maven 
+    - En el Scenario 1 que seria con usuario registrado si el correo no se cambia entonces el flujo no podra realizarse ya que por validacion de ambiente un correo solo puede estar asociado a una cuenta
+        - Para relizar esto es necesario dirigirnos al archivo **`Main.feature`** que se encuentra en la ruta **`src/test/resources/features/Main.feature`** y modificar el correo que se encuentra en el primer escenario
 
-# Puntaje extra 
+## Construccion y pruebas
+Para construir el proyecto y ejecutar las pruebas, habrá una terminal directamente en la carpeta del proyecto y luego ejecute este comando:
 
-1 Añadir al carrito dos PC HP LP3065
-  - Delivery Date = Calendario con fecha de mañana
-  - Validar que la memoria del equipo es de 16GB
-  - Escribir un review ingresando un texto de largo menor a 25 carateres y obtener mensaje de warning
-  - Escribir un review válido = Your Name,  Your review y Rating neutral (radio button central) y obtener mensaje de ingreso correcto 
+```bash
+mvn clean install -DskipTests
+```
+Este comando limpiara el directorio temporal e instalara todas las dependencias necesarias
 
-2 Comparar los productos: Apple Cinema 30" y Samsung SyncMaster 941BW 
-  - Evidencia de cuadro comparativo de ambos productos
-    
-Se ponderará la cantidad de valores ingresados en duro y la documentación del código.
+```bash
+mvn test -Dcucumber.options="--tags @Full"
+```
+## Detalle de flujos realizados
+En esta seccion se veran los detalles de los flujos realizados a groso modo
 
-# Entregables
+    - 1er flujo: Se realiza con una creacion de usuario
 
-- Archivo de entrada de data para la ejecución de la automatización
-- Archivo/s de salida (Reporte, log, evidencias tomadas)
-- La solución debe contener un README.md con la documentación de la automatización:
-- Pre requisitos
-- Instrucciones para ejecutar
-- Detalle Flujo
-- Debe ser enviada vía un pull request a este repositorio https://github.com/previred/Desafio_Automatizacion_QA 
-- En el detalle del commit debes indicar los siguientes datos (Nombre Completo y Correo Electrónico)
+        - Añadir al carro de compras un Ipod Classic
+        - Añadir al carro de compras un iMac
+        - Proceder a realizar la compra
+        - Crear una cuenta
+        - Continuar con la compra y llegar a la orden completa
+        - Visitar el historial de ordenes y validar resumen de orden
+        - Cerrar sesión
 
+    - 2do flujo: Se realiza el mismo flujo anterior pero con un usuario ya con credenciales que se usa el usuario que se creo anteriormente
 
-# NOTA: 
-El sitio de prueba suele presentar error de l&iacute;mite de accesos, basta repetir la consulta para poder llegar la opci&oacute;n requerida.
+        - Añadir al carro de compras un Ipod Classic
+        - Añadir al carro de compras un iMac
+        - Proceder a realizar la compra
+        - Continuar con la compra y llegar a la orden completa
+        - Visitar el historial de ordenes y validar resumen de orden
+        - Cerrar sesión
+
+    - 3er flujo: Comparacion de 2 productos
+
+        - Se busca el producto Apple Cinema 30 y se agrega a la seccion de comparación 
+        - Se busca el producto Samsung SyncMaster 941BW y se agrega a la seccion de comparación
+        - Se evidencia que esten en la sección comparación los productos anteriormente mencionados
+
+    - 4to flujo: Añadir dos PC HP LP3065
+
+        - Se busca el producto HP LP3065
+        - Se selecciona la fecha de entrega tomando la fecha de hoy y sumandole 1 dia
+        - Se valida que la descripción corresponda a 16GB de memoria
+
+## Finalizacion y agradecimientos
+De esta manera se realizara la ejecución completa de la automatización con 4 escenarios distintos que se puede revisar el archivo **`Main.Feature`** para conocer mas detalles.
+
+Ademas cabe mencionar que al finalizar la ejecución esta creara un Reporte en la ruta **`results/TestReport.html`** el cual tendra capturas de pantalla de todos los pasos
+realizados asi como tambien logs de codigo de las validaciones.
+
+Muchas gracias entregarme la oportunidad de realizar este desafío, ha sido un gran desafio para mi y estoy completamente abierto a recibir algun tipo de feedback sobre el codigo realizado.
